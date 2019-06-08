@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "calculo-cuadrado", "calculo-cuadrado\calculo-cuadrado.csproj", "{BBF8DA91-9D78-426C-9C87-9C34BD70782F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BBF8DA91-9D78-426C-9C87-9C34BD70782F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBF8DA91-9D78-426C-9C87-9C34BD70782F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBF8DA91-9D78-426C-9C87-9C34BD70782F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBF8DA91-9D78-426C-9C87-9C34BD70782F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7FA40788-6D3F-4F3C-B17A-92CEBC8348D3}
+	EndGlobalSection
+EndGlobal
