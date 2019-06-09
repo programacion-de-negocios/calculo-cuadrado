@@ -119,13 +119,16 @@ namespace calculo_cuadrado
                 OnPropertyChanged("PuntoD_Y");
                 OnPropertyChanged("BaseRectangulo");
                 OnPropertyChanged("AlturaRectangulo");
-                if (VerificarAltura() != 0 || VerificarBase() != 0 )
+                if (VerificarAltura() != 0 || VerificarBase() != 0)
                 {
                     OnPropertyChanged("Perimetro");
                     OnPropertyChanged("Area");
                 }
-                else MessageBox.Show("NO SE FORMA NINGUN RECTANGULO, LAS COORDENADAS NO COINCIDEN");
-
+                else {
+                    Perimetro = "0";
+                    Area = "0";
+                    MessageBox.Show("NO SE PUEDE FORMAR NINGUN RECTANGULO, LAS COORDENADAS NO COINCIDEN");
+                }
             }
         }
         //METODO PARA OBTENER LA DISTANCIA ENTRER DOS PUNTOS
