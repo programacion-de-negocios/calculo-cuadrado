@@ -24,7 +24,8 @@ namespace calculo_cuadrado
         public MainWindow()
         {
             InitializeComponent();
-            ElRectangulo = new Rectangulo { PuntoA_X = "0", PuntoA_Y = "0", PuntoB_X = "0", PuntoB_Y = "0",PuntoC_X = "0",PuntoC_Y = "0",PuntoD_X = "0",PuntoD_Y = "0"};
+            //RECTANGULO DE EJEMPLO AL MOMENTO DE INICIAR EL PROGRAMA
+            ElRectangulo = new Rectangulo { PuntoA_X = "1", PuntoA_Y = "2", PuntoB_X = "5", PuntoB_Y = "2",PuntoC_X = "5",PuntoC_Y = "1",PuntoD_X = "1",PuntoD_Y = "1"};
             this.DataContext = ElRectangulo;
         }
 
