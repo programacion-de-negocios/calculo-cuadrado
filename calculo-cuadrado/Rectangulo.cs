@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 //usando el namespace necesario
 using System.ComponentModel;
+using System.Windows;
 
 namespace calculo_cuadrado
 {
@@ -19,9 +20,6 @@ namespace calculo_cuadrado
         private string puntoC_Y;
         private string puntoD_X;
         private string puntoD_Y;
-
-        private double baseRectangulo = 0;
-        private double alturaRectangulo = 0;
         //PROPIEDADES PARA EL PUNTO A
         public string PuntoA_X
         {
@@ -32,7 +30,7 @@ namespace calculo_cuadrado
                 bool resultado = double.TryParse(value, out numero);
                 if (resultado) puntoA_X = value;
                 OnPropertyChanged("PuntoA_X");
-                OnPropertyChanged("Perimetro");
+                
             }
         }
         public string PuntoA_Y
@@ -44,7 +42,7 @@ namespace calculo_cuadrado
                 bool resultado = double.TryParse(value, out numero);
                 if (resultado) puntoA_Y = value;
                 OnPropertyChanged("PuntoA_Y");
-                OnPropertyChanged("Perimetro");
+                
             }
         }
         //PROPIEDADES PARA EL PUNTO B
@@ -57,7 +55,7 @@ namespace calculo_cuadrado
                 bool resultado = double.TryParse(value, out numero);
                 if (resultado) puntoB_X = value;
                 OnPropertyChanged("PuntoB_X");
-                OnPropertyChanged("Perimetro");
+                
             }
         }
         public string PuntoB_Y
@@ -69,7 +67,7 @@ namespace calculo_cuadrado
                 bool resultado = double.TryParse(value, out numero);
                 if (resultado) puntoB_Y = value;
                 OnPropertyChanged("PuntoB_Y");
-                OnPropertyChanged("Perimetro");
+                
             }
         }
         //PROPIEDADES PARA EL PUNTO C
@@ -82,7 +80,7 @@ namespace calculo_cuadrado
                 bool resultado = double.TryParse(value, out numero);
                 if (resultado) puntoC_X = value;
                 OnPropertyChanged("PuntoC_X");
-                OnPropertyChanged("Perimetro");
+               
             }
         }
         public string PuntoC_Y
@@ -94,7 +92,7 @@ namespace calculo_cuadrado
                 bool resultado = double.TryParse(value, out numero);
                 if (resultado) puntoC_Y = value;
                 OnPropertyChanged("PuntoC_Y");
-                OnPropertyChanged("Perimetro");
+               
             }
         }
         //PROPIEDADES PARA EL PUNTO D
@@ -107,7 +105,7 @@ namespace calculo_cuadrado
                 bool resultado = double.TryParse(value, out numero);
                 if (resultado) puntoD_X = value;
                 OnPropertyChanged("PuntoD_X");
-                OnPropertyChanged("Perimetro");
+                
             }
         }
         public string PuntoD_Y
@@ -119,61 +117,104 @@ namespace calculo_cuadrado
                 bool resultado = double.TryParse(value, out numero);
                 if (resultado) puntoD_Y = value;
                 OnPropertyChanged("PuntoD_Y");
-                OnPropertyChanged("Perimetro");
+                OnPropertyChanged("BaseRectangulo");
+                OnPropertyChanged("AlturaRectangulo");
+                if (VerificarAltura() != 0 || VerificarBase() != 0 )
+                {
+                    OnPropertyChanged("Perimetro");
+                    OnPropertyChanged("Area");
+                }
+                else MessageBox.Show("NO SE FORMA NINGUN RECTANGULO, LAS COORDENADAS NO COINCIDEN");
+
             }
         }
+        //METODO PARA OBTENER LA DISTANCIA ENTRER DOS PUNTOS
         private double Distancia(double x1,double x2, double y1,double y2)
         {
             double distancia;
             distancia = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
             return distancia;
         }
-
-        private void VerificarRectangulo()
+        //METODO PARA VERIFICAR LA BASE DEL RECTANGULO
+        public double VerificarBase()
         {
-            double base1,base2,altura1,altura2;
+            double base1,base2;
             base1 = Distancia(double.Parse(puntoA_X), double.Parse(puntoB_X), double.Parse(PuntoA_Y), double.Parse(PuntoB_Y));
             base2 = Distancia(double.Parse(puntoC_X), double.Parse(puntoD_X), double.Parse(PuntoC_Y), double.Parse(PuntoD_Y));
-            altura1= Distancia(double.Parse(puntoA_X), double.Parse(puntoD_X), double.Parse(PuntoA_Y), double.Parse(PuntoD_Y));
+            if(base1!=base2) base1 = 0;
+            return base1;
+        }
+        //METODO PARA VERIFICAR LA ALTURA DEL RECTANGULO
+        public double VerificarAltura()
+        {
+            double altura1, altura2;
+            altura1 = Distancia(double.Parse(puntoA_X), double.Parse(puntoD_X), double.Parse(PuntoA_Y), double.Parse(PuntoD_Y));
             altura2 = Distancia(double.Parse(puntoB_X), double.Parse(puntoC_X), double.Parse(PuntoB_Y), double.Parse(PuntoC_Y));
-            if(base1==base2 && altura1 == altura2)
+            if (altura1 != altura2)
             {
-                
-                BaseRectangulo = base1;
-                AlturaRectangulo = altura1;
+                altura1 = 0;
+               
             }
-           
+            return altura1;
         }
-        public double BaseRectangulo
+        //PROPIEDAD PARA OBTENER LA BASE DEL RECTANGULO
+        public string BaseRectangulo
         {
-            get
-            { return baseRectangulo; }
-            set
-            { baseRectangulo = value; }
+            get{
+                double labase = VerificarBase();
+                return labase.ToString();
+            }
+            set{
+                double labase = VerificarBase();
+                labase.ToString();
+                OnPropertyChanged("BaseRectangulo");
+            }
         }
-        public double AlturaRectangulo
+        //PROPIEDAD PARA OBTENER LA ALTURA DEL RECTANGULO
+        public string AlturaRectangulo
         {
-            get { return alturaRectangulo; }
-            set { alturaRectangulo = value; }
+            get {
+                double laaltura = VerificarAltura();
+                return laaltura.ToString();
+            }
+            set {
+                double laaltura = VerificarAltura();
+                laaltura.ToString();
+                OnPropertyChanged("AlturaRectangulo");
+            }
         }
+        //CALCULO PARA EL PERIMETRO DEL RECTANGULO
         public string Perimetro
         {
-           
             get {
-                VerificarRectangulo();
                 double perimetro;
-                perimetro = 2 * BaseRectangulo + 2 * AlturaRectangulo;
+                perimetro = 2 * double.Parse(BaseRectangulo) + 2 * double.Parse(AlturaRectangulo);
                 return perimetro.ToString();
             }
             set {
-                VerificarRectangulo();
                 double perimetro;
-                perimetro = 2 * BaseRectangulo + 2 * AlturaRectangulo;
+                perimetro = 2 * double.Parse(BaseRectangulo) + 2 * double.Parse(AlturaRectangulo);
                 perimetro.ToString();
                 OnPropertyChanged("Perimetro");
             }
         }
-
+        //CALCULO PARA EL AREA DEL RECTANGULO
+        public string Area
+        {
+            get
+            {
+                double elarea;
+                elarea = double.Parse(BaseRectangulo) * double.Parse(AlturaRectangulo);
+                return elarea.ToString();
+            }
+            set
+            {
+                double elarea;
+                elarea = double.Parse(BaseRectangulo) * double.Parse(AlturaRectangulo);
+                elarea.ToString();
+                OnPropertyChanged("Area");
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged(String property)
