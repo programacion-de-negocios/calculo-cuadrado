@@ -160,7 +160,7 @@ namespace calculo_cuadrado
             }
             return altura1;
         }
-        //PROPIEDAD PARA OBTENER LA BASE DEL RECTANGULO
+        //PROPIEDAD PARA OBTENER LA BASE DEL RECTANGUL
         public string BaseRectangulo
         {
             get{
